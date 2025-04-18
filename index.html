@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JS Validation Form</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="bg-black text-white">
+  <div class="min-h-screen flex flex-col md:flex-row">
+    <div class="md:w-1/2 relative">
+      <img src="referenceimg.jpg" alt="Descriptive Text" class="w-full h-full object-cover" width="800" height="800">
+
+      <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center p-8">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Let's Get You Signed Up!</h1>
+        <p class="text-lg">It only takes a minute to join us</p>
+      </div>
+    </div>
+    <div class="md:w-1/2 flex flex-col justify-center p-8">
+      <form class="space-y-6" id="registerForm" novalidate>
+
+        <!-- Full Name Input -->
+        <div>
+          <label for="full-name" class="block text-sm font-medium mb-1">Full Name</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fas fa-user"></i></span>
+            <input type="text" name="full-name" id="full-name" required aria-describedby="full-name-error"
+              class="mt-1 block w-full bg-black border-b border-gray-600 pl-10 pr-3 py-2 focus:outline-none focus:border-white" />
+          </div>
+          <p class="error-text" id="full-name-error"></p>
+        </div>
+
+        <!-- Email Input -->
+        <div>
+          <label for="email" class="block text-sm font-medium mb-1">Email ID</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fas fa-envelope"></i></span>
+            <input type="email" name="email" id="email" required aria-describedby="email-error"
+              class="mt-1 block w-full bg-black border-b border-gray-600 pl-10 pr-3 py-2 focus:outline-none focus:border-white" />
+          </div>
+          <p class="error-text" id="email-error"></p>
+        </div>
+
+        <!-- Phone Input -->
+        <div>
+          <label for="phone" class="block text-sm font-medium mb-1">Phone Number</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fas fa-phone"></i></span>
+            <input type="tel" name="phone" id="phone" required pattern="\d{10}" aria-describedby="phone-error"
+              class="mt-1 block w-full bg-black border-b border-gray-600 pl-10 pr-3 py-2 focus:outline-none focus:border-white" />
+          </div>
+          <p class="error-text" id="phone-error"></p>
+        </div>
+
+        <!-- Password Input with Toggle and Strength Bar -->
+        <div>
+          <label for="password" class="block text-sm font-medium mb-1">Password</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fas fa-lock"></i></span>
+            <input type="password" name="password" id="password" required aria-describedby="password-error password-strength-text"
+              class="mt-1 block w-full bg-black border-b border-gray-600 pl-10 pr-10 py-2 focus:outline-none focus:border-white" />
+            <button type="button" id="togglePassword" aria-label="Toggle password visibility"
+              class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 focus:outline-none">
+              <i class="fas fa-eye" id="togglePasswordIcon"></i>
+            </button>
+          </div>
+          <!-- Password Strength Bar -->
+          <div class="mt-1 h-2 w-full rounded bg-gray-700">
+            <div class="h-2 rounded" id="password-strength-bar"></div>
+          </div>
+          <p class="error-text" id="password-error"></p>
+          <p class="mt-1 text-sm" id="password-strength-text"></p>
+        </div>
+
+        <!-- Confirm Password Input with Toggle -->
+        <div>
+          <label for="confirm-password" class="block text-sm font-medium mb-1">Confirm Password</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fas fa-lock"></i></span>
+            <input type="password" name="confirm-password" id="confirm-password" required aria-describedby="confirm-password-error"
+              class="mt-1 block w-full bg-black border-b border-gray-600 pl-10 pr-10 py-2 focus:outline-none focus:border-white" />
+            <button type="button" id="toggleConfirmPassword" aria-label="Toggle confirm password visibility"
+              class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 focus:outline-none">
+              <i class="fas fa-eye" id="toggleConfirmPasswordIcon"></i>
+            </button>
+          </div>
+          <p class="error-text" id="confirm-password-error"></p>
+        </div>
+
+        <!-- Terms and Conditions Checkbox -->
+        <div class="flex items-center">
+          <input type="checkbox" id="terms" name="terms" required class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
+          <label for="terms" class="ml-2 block text-sm font-medium">
+            I accept the <a href="#" class="text-blue-500 hover:underline">terms and conditions</a>
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+          <button type="submit"
+            class="w-full bg-white text-black font-semibold py-3 rounded-md hover:bg-gray-200 transition">
+            Register
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bootstrap Toast for Error Messages -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100">
+    <div id="toastMessage" class="toast text-white bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-danger text-white">
+        <strong class="me-auto">Form Error</strong>
+        <small>Now</small>
+        <button type="button" class="btn-close btn-close-white ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body" id="toastBody">This is a sample error message.</div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
